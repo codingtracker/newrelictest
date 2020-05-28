@@ -1,5 +1,5 @@
 {
-  "conditions": [
+  "apm_conditions": [
     {
       "id": 13601937,
       "type": "apm_app_metric",
@@ -39,17 +39,17 @@
       "condition_scope": "application",
       "terms": [
         {
-          "duration": "15",
-          "operator": "below",
-          "priority": "warning",
-          "threshold": "0.9",
-          "time_function": "all"
-        },
-        {
           "duration": "5",
           "operator": "below",
           "priority": "critical",
           "threshold": "0.8",
+          "time_function": "all"
+        },
+        {
+          "duration": "15",
+          "operator": "below",
+          "priority": "warning",
+          "threshold": "0.9",
           "time_function": "all"
         }
       ]
@@ -66,17 +66,17 @@
       "condition_scope": "application",
       "terms": [
         {
-          "duration": "15",
-          "operator": "below",
-          "priority": "warning",
-          "threshold": "0.9",
-          "time_function": "all"
-        },
-        {
           "duration": "5",
           "operator": "below",
           "priority": "critical",
           "threshold": "0.8",
+          "time_function": "all"
+        },
+        {
+          "duration": "15",
+          "operator": "below",
+          "priority": "warning",
+          "threshold": "0.9",
           "time_function": "all"
         }
       ]
@@ -326,16 +326,127 @@
       }
     }
   ],
-  "data": [
+  "infra_conditions": [
     {
-      "type": "infra_host_not_reporting",
-      "name": "SEA-SM-LUI-No-Data-to-Newrelic",
+      "type": "infra_metric",
+      "name": "BEI-SM-LUI-High-CPU-Load ",
       "enabled": true,
       "filter": {
         "and": [
           {
             "is": {
-              "Datacenter": "SEA"
+              "RoleTypeID": "LUI"
+            }
+          },
+          {
+            "is": {
+              "Datacenter": "BEI"
+            }
+          }
+        ]
+      },
+      "id": 13322712,
+      "violation_close_timer": 24,
+      "created_at_epoch_millis": 1587972191559,
+      "updated_at_epoch_millis": 1589364575494,
+      "policy_id": 719110,
+      "event_type": "SystemSample",
+      "select_value": "loadAverageFiveMinute",
+      "comparison": "above",
+      "critical_threshold": {
+        "value": 4,
+        "duration_minutes": 5,
+        "time_function": "all"
+      },
+      "warning_threshold": {
+        "value": 3,
+        "duration_minutes": 15,
+        "time_function": "all"
+      }
+    },
+    {
+      "type": "infra_metric",
+      "name": "BEI-SM-LUI-High-Disk-Usage",
+      "enabled": true,
+      "filter": {
+        "and": [
+          {
+            "is": {
+              "RoleTypeID": "LUI"
+            }
+          },
+          {
+            "is": {
+              "Datacenter": "BEI"
+            }
+          }
+        ]
+      },
+      "id": 13322950,
+      "violation_close_timer": 24,
+      "created_at_epoch_millis": 1587975288423,
+      "updated_at_epoch_millis": 1589363259153,
+      "policy_id": 719110,
+      "event_type": "SystemSample",
+      "select_value": "diskUsedPercent",
+      "comparison": "above",
+      "critical_threshold": {
+        "value": 99,
+        "duration_minutes": 1,
+        "time_function": "all"
+      },
+      "warning_threshold": {
+        "value": 90,
+        "duration_minutes": 15,
+        "time_function": "all"
+      }
+    },
+    {
+      "type": "infra_metric",
+      "name": "BEI-SM-LUI-High-Memory-Usage",
+      "enabled": true,
+      "filter": {
+        "and": [
+          {
+            "is": {
+              "RoleTypeID": "LUI"
+            }
+          },
+          {
+            "is": {
+              "Datacenter": "BEI"
+            }
+          }
+        ]
+      },
+      "id": 13322791,
+      "violation_close_timer": 24,
+      "created_at_epoch_millis": 1587972816518,
+      "updated_at_epoch_millis": 1589363846957,
+      "policy_id": 719110,
+      "event_type": "SystemSample",
+      "select_value": "memoryUsedBytes/memoryTotalBytes*100",
+      "comparison": "above",
+      "critical_threshold": {
+        "value": 99,
+        "duration_minutes": 1,
+        "time_function": "all"
+      },
+      "warning_threshold": {
+        "value": 95,
+        "duration_minutes": 5,
+        "time_function": "all"
+      }
+    },
+    {
+      "type": "infra_host_not_reporting",
+      "name": "BEI-SM-LUI-No-Data-to-Newrelic",
+      "enabled": true,
+      "filter": {
+        "and": [
+          {
+            "is": {
+              "Datacenter": "BEI"
             }
           },
           {
@@ -345,13 +456,124 @@
           }
         ]
       },
-      "id": 13674982,
+      "id": 13675376,
       "violation_close_timer": 24,
-      "created_at_epoch_millis": 1589417035877,
-      "updated_at_epoch_millis": 1589417035932,
+      "created_at_epoch_millis": 1589417378285,
+      "updated_at_epoch_millis": 1589417378338,
       "policy_id": 719110,
       "critical_threshold": {
         "duration_minutes": 5
+      }
+    },
+    {
+      "type": "infra_metric",
+      "name": "PAR-SM-LUI-High-CPU-Load ",
+      "enabled": true,
+      "filter": {
+        "and": [
+          {
+            "is": {
+              "RoleTypeID": "LUI"
+            }
+          },
+          {
+            "is": {
+              "Datacenter": "PAR"
+            }
+          }
+        ]
+      },
+      "id": 13322704,
+      "violation_close_timer": 24,
+      "created_at_epoch_millis": 1587972043241,
+      "updated_at_epoch_millis": 1589364548693,
+      "policy_id": 719110,
+      "event_type": "SystemSample",
+      "select_value": "loadAverageFiveMinute",
+      "comparison": "above",
+      "critical_threshold": {
+        "value": 4,
+        "duration_minutes": 5,
+        "time_function": "all"
+      },
+      "warning_threshold": {
+        "value": 3,
+        "duration_minutes": 15,
+        "time_function": "all"
+      }
+    },
+    {
+      "type": "infra_metric",
+      "name": "PAR-SM-LUI-High-Disk-Usage",
+      "enabled": true,
+      "filter": {
+        "and": [
+          {
+            "is": {
+              "RoleTypeID": "LUI"
+            }
+          },
+          {
+            "is": {
+              "Datacenter": "PAR"
+            }
+          }
+        ]
+      },
+      "id": 13322949,
+      "violation_close_timer": 24,
+      "created_at_epoch_millis": 1587975285181,
+      "updated_at_epoch_millis": 1589363265860,
+      "policy_id": 719110,
+      "event_type": "SystemSample",
+      "select_value": "diskUsedPercent",
+      "comparison": "above",
+      "critical_threshold": {
+        "value": 99,
+        "duration_minutes": 1,
+        "time_function": "all"
+      },
+      "warning_threshold": {
+        "value": 90,
+        "duration_minutes": 15,
+        "time_function": "all"
+      }
+    },
+    {
+      "type": "infra_metric",
+      "name": "PAR-SM-LUI-High-Memory-Usage",
+      "enabled": true,
+      "filter": {
+        "and": [
+          {
+            "is": {
+              "RoleTypeID": "LUI"
+            }
+          },
+          {
+            "is": {
+              "Datacenter": "PAR"
+            }
+          }
+        ]
+      },
+      "id": 13322772,
+      "violation_close_timer": 24,
+      "created_at_epoch_millis": 1587972681835,
+      "updated_at_epoch_millis": 1589363858439,
+      "policy_id": 719110,
+      "event_type": "SystemSample",
+      "select_value": "memoryUsedBytes/memoryTotalBytes*100",
+      "comparison": "above",
+      "critical_threshold": {
+        "value": 99,
+        "duration_minutes": 1,
+        "time_function": "all"
+      },
+      "warning_threshold": {
+        "value": 95,
+        "duration_minutes": 5,
+        "time_function": "all"
       }
     },
     {
@@ -420,218 +642,6 @@
     },
     {
       "type": "infra_metric",
-      "name": "BEI-SM-LUI-High-Disk-Usage",
-      "enabled": true,
-      "filter": {
-        "and": [
-          {
-            "is": {
-              "RoleTypeID": "LUI"
-            }
-          },
-          {
-            "is": {
-              "Datacenter": "BEI"
-            }
-          }
-        ]
-      },
-      "id": 13322950,
-      "violation_close_timer": 24,
-      "created_at_epoch_millis": 1587975288423,
-      "updated_at_epoch_millis": 1589363259153,
-      "policy_id": 719110,
-      "event_type": "SystemSample",
-      "select_value": "diskUsedPercent",
-      "comparison": "above",
-      "critical_threshold": {
-        "value": 99,
-        "duration_minutes": 1,
-        "time_function": "all"
-      },
-      "warning_threshold": {
-        "value": 90,
-        "duration_minutes": 15,
-        "time_function": "all"
-      }
-    },
-    {
-      "type": "infra_host_not_reporting",
-      "name": "BEI-SM-LUI-No-Data-to-Newrelic",
-      "enabled": true,
-      "filter": {
-        "and": [
-          {
-            "is": {
-              "Datacenter": "BEI"
-            }
-          },
-          {
-            "is": {
-              "RoleTypeID": "LUI"
-            }
-          }
-        ]
-      },
-      "id": 13675376,
-      "violation_close_timer": 24,
-      "created_at_epoch_millis": 1589417378285,
-      "updated_at_epoch_millis": 1589417378338,
-      "policy_id": 719110,
-      "critical_threshold": {
-        "duration_minutes": 5
-      }
-    },
-    {
-      "type": "infra_metric",
-      "name": "BEI-SM-LUI-High-CPU-Load ",
-      "enabled": true,
-      "filter": {
-        "and": [
-          {
-            "is": {
-              "RoleTypeID": "LUI"
-            }
-          },
-          {
-            "is": {
-              "Datacenter": "BEI"
-            }
-          }
-        ]
-      },
-      "id": 13322712,
-      "violation_close_timer": 24,
-      "created_at_epoch_millis": 1587972191559,
-      "updated_at_epoch_millis": 1589364575494,
-      "policy_id": 719110,
-      "event_type": "SystemSample",
-      "select_value": "loadAverageFiveMinute",
-      "comparison": "above",
-      "critical_threshold": {
-        "value": 4,
-        "duration_minutes": 5,
-        "time_function": "all"
-      },
-      "warning_threshold": {
-        "value": 3,
-        "duration_minutes": 15,
-        "time_function": "all"
-      }
-    },
-    {
-      "type": "infra_metric",
-      "name": "PAR-SM-LUI-High-Disk-Usage",
-      "enabled": true,
-      "filter": {
-        "and": [
-          {
-            "is": {
-              "RoleTypeID": "LUI"
-            }
-          },
-          {
-            "is": {
-              "Datacenter": "PAR"
-            }
-          }
-        ]
-      },
-      "id": 13322949,
-      "violation_close_timer": 24,
-      "created_at_epoch_millis": 1587975285181,
-      "updated_at_epoch_millis": 1589363265860,
-      "policy_id": 719110,
-      "event_type": "SystemSample",
-      "select_value": "diskUsedPercent",
-      "comparison": "above",
-      "critical_threshold": {
-        "value": 99,
-        "duration_minutes": 1,
-        "time_function": "all"
-      },
-      "warning_threshold": {
-        "value": 90,
-        "duration_minutes": 15,
-        "time_function": "all"
-      }
-    },
-    {
-      "type": "infra_metric",
-      "name": "BEI-SM-LUI-High-Memory-Usage",
-      "enabled": true,
-      "filter": {
-        "and": [
-          {
-            "is": {
-              "RoleTypeID": "LUI"
-            }
-          },
-          {
-            "is": {
-              "Datacenter": "BEI"
-            }
-          }
-        ]
-      },
-      "id": 13322791,
-      "violation_close_timer": 24,
-      "created_at_epoch_millis": 1587972816518,
-      "updated_at_epoch_millis": 1589363846957,
-      "policy_id": 719110,
-      "event_type": "SystemSample",
-      "select_value": "memoryUsedBytes/memoryTotalBytes*100",
-      "comparison": "above",
-      "critical_threshold": {
-        "value": 99,
-        "duration_minutes": 1,
-        "time_function": "all"
-      },
-      "warning_threshold": {
-        "value": 95,
-        "duration_minutes": 5,
-        "time_function": "all"
-      }
-    },
-    {
-      "type": "infra_metric",
-      "name": "PAR-SM-LUI-High-CPU-Load ",
-      "enabled": true,
-      "filter": {
-        "and": [
-          {
-            "is": {
-              "RoleTypeID": "LUI"
-            }
-          },
-          {
-            "is": {
-              "Datacenter": "PAR"
-            }
-          }
-        ]
-      },
-      "id": 13322704,
-      "violation_close_timer": 24,
-      "created_at_epoch_millis": 1587972043241,
-      "updated_at_epoch_millis": 1589364548693,
-      "policy_id": 719110,
-      "event_type": "SystemSample",
-      "select_value": "loadAverageFiveMinute",
-      "comparison": "above",
-      "critical_threshold": {
-        "value": 4,
-        "duration_minutes": 5,
-        "time_function": "all"
-      },
-      "warning_threshold": {
-        "value": 3,
-        "duration_minutes": 15,
-        "time_function": "all"
-      }
-    },
-    {
-      "type": "infra_metric",
       "name": "SEA-SM-LUI-High-Disk-Usage",
       "enabled": true,
       "filter": {
@@ -664,43 +674,6 @@
       "warning_threshold": {
         "value": 90,
         "duration_minutes": 15,
-        "time_function": "all"
-      }
-    },
-    {
-      "type": "infra_metric",
-      "name": "PAR-SM-LUI-High-Memory-Usage",
-      "enabled": true,
-      "filter": {
-        "and": [
-          {
-            "is": {
-              "RoleTypeID": "LUI"
-            }
-          },
-          {
-            "is": {
-              "Datacenter": "PAR"
-            }
-          }
-        ]
-      },
-      "id": 13322772,
-      "violation_close_timer": 24,
-      "created_at_epoch_millis": 1587972681835,
-      "updated_at_epoch_millis": 1589363858439,
-      "policy_id": 719110,
-      "event_type": "SystemSample",
-      "select_value": "memoryUsedBytes/memoryTotalBytes*100",
-      "comparison": "above",
-      "critical_threshold": {
-        "value": 99,
-        "duration_minutes": 1,
-        "time_function": "all"
-      },
-      "warning_threshold": {
-        "value": 95,
-        "duration_minutes": 5,
         "time_function": "all"
       }
     },
@@ -740,12 +713,33 @@
         "duration_minutes": 5,
         "time_function": "all"
       }
+    },
+    {
+      "type": "infra_host_not_reporting",
+      "name": "SEA-SM-LUI-No-Data-to-Newrelic",
+      "enabled": true,
+      "filter": {
+        "and": [
+          {
+            "is": {
+              "Datacenter": "SEA"
+            }
+          },
+          {
+            "is": {
+              "RoleTypeID": "LUI"
+            }
+          }
+        ]
+      },
+      "id": 13674982,
+      "violation_close_timer": 24,
+      "created_at_epoch_millis": 1589417035877,
+      "updated_at_epoch_millis": 1589417035932,
+      "policy_id": 719110,
+      "critical_threshold": {
+        "duration_minutes": 5
+      }
     }
-  ],
-  "meta": {
-    "limit": 50,
-    "offset": 0,
-    "total": 12
-  },
-  "links": {}
+  ]
 }
