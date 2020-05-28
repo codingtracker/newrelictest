@@ -1,0 +1,751 @@
+{
+  "conditions": [
+    {
+      "id": 13601937,
+      "type": "apm_app_metric",
+      "name": "SEA-SM-LUI-Apdex (Low)",
+      "enabled": true,
+      "entities": [
+        "16253405"
+      ],
+      "metric": "apdex",
+      "condition_scope": "application",
+      "terms": [
+        {
+          "duration": "5",
+          "operator": "below",
+          "priority": "critical",
+          "threshold": "0.8",
+          "time_function": "all"
+        },
+        {
+          "duration": "15",
+          "operator": "below",
+          "priority": "warning",
+          "threshold": "0.9",
+          "time_function": "all"
+        }
+      ]
+    },
+    {
+      "id": 13602193,
+      "type": "apm_app_metric",
+      "name": "PAR-SM-LUI-Apdex (Low)",
+      "enabled": true,
+      "entities": [
+        "16450643"
+      ],
+      "metric": "apdex",
+      "condition_scope": "application",
+      "terms": [
+        {
+          "duration": "15",
+          "operator": "below",
+          "priority": "warning",
+          "threshold": "0.9",
+          "time_function": "all"
+        },
+        {
+          "duration": "5",
+          "operator": "below",
+          "priority": "critical",
+          "threshold": "0.8",
+          "time_function": "all"
+        }
+      ]
+    },
+    {
+      "id": 13602329,
+      "type": "apm_app_metric",
+      "name": "BEI-SM-LUI-Apdex (Low)",
+      "enabled": true,
+      "entities": [
+        "56116028"
+      ],
+      "metric": "apdex",
+      "condition_scope": "application",
+      "terms": [
+        {
+          "duration": "15",
+          "operator": "below",
+          "priority": "warning",
+          "threshold": "0.9",
+          "time_function": "all"
+        },
+        {
+          "duration": "5",
+          "operator": "below",
+          "priority": "critical",
+          "threshold": "0.8",
+          "time_function": "all"
+        }
+      ]
+    },
+    {
+      "id": 13678236,
+      "type": "apm_app_metric",
+      "name": "SEA-SM-LUI-Response time (web) (High)",
+      "enabled": true,
+      "entities": [
+        "16253405"
+      ],
+      "metric": "response_time_web",
+      "condition_scope": "application",
+      "terms": [
+        {
+          "duration": "5",
+          "operator": "above",
+          "priority": "critical",
+          "threshold": "5",
+          "time_function": "all"
+        }
+      ]
+    },
+    {
+      "id": 13678243,
+      "type": "apm_app_metric",
+      "name": "PAR-SM-LUI-Response time (web) (High)",
+      "enabled": true,
+      "entities": [
+        "16450643"
+      ],
+      "metric": "response_time_web",
+      "condition_scope": "application",
+      "terms": [
+        {
+          "duration": "5",
+          "operator": "above",
+          "priority": "critical",
+          "threshold": "5",
+          "time_function": "all"
+        }
+      ]
+    },
+    {
+      "id": 13678249,
+      "type": "apm_app_metric",
+      "name": "BEI-SM-LUI-Response time (web) (High)",
+      "enabled": true,
+      "entities": [
+        "56116028"
+      ],
+      "metric": "response_time_web",
+      "condition_scope": "application",
+      "terms": [
+        {
+          "duration": "5",
+          "operator": "above",
+          "priority": "critical",
+          "threshold": "5",
+          "time_function": "all"
+        }
+      ]
+    }
+  ],
+  "nrql_conditions": [
+    {
+      "type": "static",
+      "id": 13677277,
+      "name": "SEA-SM-LUI-IIS-No-Read-Ops",
+      "enabled": true,
+      "value_function": "single_value",
+      "violation_time_limit_seconds": 86400,
+      "terms": [
+        {
+          "duration": "5",
+          "operator": "below",
+          "priority": "critical",
+          "threshold": "0.001",
+          "time_function": "all"
+        }
+      ],
+      "nrql": {
+        "query": "SELECT average(ioReadBytesPerSecond) from ProcessSample FACET entityName WHERE Datacenter ='SEA' and Environment='PR' AND RoleTypeID = 'LUI' AND processDisplayName = 'w3wp.exe'",
+        "since_value": "3"
+      }
+    },
+    {
+      "type": "static",
+      "id": 13677465,
+      "name": "BEI-SM-LUI-IIS-No-Read-Ops",
+      "enabled": true,
+      "value_function": "single_value",
+      "violation_time_limit_seconds": 86400,
+      "terms": [
+        {
+          "duration": "5",
+          "operator": "below",
+          "priority": "critical",
+          "threshold": "0.001",
+          "time_function": "all"
+        }
+      ],
+      "nrql": {
+        "query": "SELECT average(ioReadBytesPerSecond) from ProcessSample FACET entityName WHERE Datacenter ='BEI' and Environment='PR' AND RoleTypeID = 'LUI' AND processDisplayName = 'w3wp.exe'",
+        "since_value": "3"
+      }
+    },
+    {
+      "type": "static",
+      "id": 13680139,
+      "name": "SEA-SM-LUI-IIS-No-Write-Ops",
+      "enabled": true,
+      "value_function": "single_value",
+      "violation_time_limit_seconds": 86400,
+      "terms": [
+        {
+          "duration": "5",
+          "operator": "below",
+          "priority": "critical",
+          "threshold": "0.001",
+          "time_function": "all"
+        }
+      ],
+      "nrql": {
+        "query": "SELECT average(ioWriteBytesPerSecond) from ProcessSample FACET entityName WHERE Datacenter ='SEA' and Environment='PR' AND RoleTypeID = 'LUI' AND processDisplayName = 'w3wp.exe'",
+        "since_value": "3"
+      }
+    },
+    {
+      "type": "static",
+      "id": 13680159,
+      "name": "BEI-SM-LUI-IIS-No-Write-Ops",
+      "enabled": true,
+      "value_function": "single_value",
+      "violation_time_limit_seconds": 86400,
+      "terms": [
+        {
+          "duration": "5",
+          "operator": "below",
+          "priority": "critical",
+          "threshold": "0.001",
+          "time_function": "all"
+        }
+      ],
+      "nrql": {
+        "query": "SELECT average(ioWriteBytesPerSecond) from ProcessSample FACET entityName WHERE Datacenter ='BEI' and Environment='PR' AND RoleTypeID = 'LUI' AND processDisplayName = 'w3wp.exe'",
+        "since_value": "3"
+      }
+    },
+    {
+      "type": "static",
+      "id": 13601580,
+      "name": "PAR-SM-LUI-Transaction-Anomaly",
+      "enabled": true,
+      "value_function": "single_value",
+      "violation_time_limit_seconds": 86400,
+      "terms": [
+        {
+          "duration": "5",
+          "operator": "below",
+          "priority": "critical",
+          "threshold": "1",
+          "time_function": "all"
+        },
+        {
+          "duration": "15",
+          "operator": "below",
+          "priority": "warning",
+          "threshold": "5",
+          "time_function": "all"
+        }
+      ],
+      "nrql": {
+        "query": "SELECT count(*) from Transaction where appName = 'PAR-PR1-LUI' and name not like '%lifechkstatusv2%' and name not like '%TransferRequestHandler%'",
+        "since_value": "3"
+      }
+    },
+    {
+      "type": "static",
+      "id": 13601430,
+      "name": "SEA-SM-LUI-Transaction-Anomaly",
+      "enabled": true,
+      "value_function": "single_value",
+      "violation_time_limit_seconds": 86400,
+      "terms": [
+        {
+          "duration": "5",
+          "operator": "below",
+          "priority": "critical",
+          "threshold": "1",
+          "time_function": "all"
+        },
+        {
+          "duration": "15",
+          "operator": "below",
+          "priority": "warning",
+          "threshold": "5",
+          "time_function": "all"
+        }
+      ],
+      "nrql": {
+        "query": "SELECT count(*) from Transaction where appName = 'SEA-PR1-LUI' and name not like '%lifechkstatusv2%' and name not like '%TransferRequestHandler%'",
+        "since_value": "3"
+      }
+    },
+    {
+      "type": "static",
+      "id": 13677462,
+      "name": "PAR-SM-LUI-IIS-No-Read-Ops",
+      "enabled": true,
+      "value_function": "single_value",
+      "violation_time_limit_seconds": 86400,
+      "terms": [
+        {
+          "duration": "5",
+          "operator": "below",
+          "priority": "critical",
+          "threshold": "0.001",
+          "time_function": "all"
+        }
+      ],
+      "nrql": {
+        "query": "SELECT average(ioReadBytesPerSecond) from ProcessSample FACET entityName WHERE Datacenter ='PAR' and Environment='PR' AND RoleTypeID = 'LUI' AND processDisplayName = 'w3wp.exe'",
+        "since_value": "3"
+      }
+    },
+    {
+      "type": "static",
+      "id": 13680149,
+      "name": "PAR-SM-LUI-IIS-No-Write-Ops",
+      "enabled": true,
+      "value_function": "single_value",
+      "violation_time_limit_seconds": 86400,
+      "terms": [
+        {
+          "duration": "5",
+          "operator": "below",
+          "priority": "critical",
+          "threshold": "0.001",
+          "time_function": "all"
+        }
+      ],
+      "nrql": {
+        "query": "SELECT average(ioWriteBytesPerSecond) from ProcessSample FACET entityName WHERE Datacenter ='PAR' and Environment='PR' AND RoleTypeID = 'LUI' AND processDisplayName = 'w3wp.exe'",
+        "since_value": "3"
+      }
+    }
+  ],
+  "data": [
+    {
+      "type": "infra_host_not_reporting",
+      "name": "SEA-SM-LUI-No-Data-to-Newrelic",
+      "enabled": true,
+      "filter": {
+        "and": [
+          {
+            "is": {
+              "Datacenter": "SEA"
+            }
+          },
+          {
+            "is": {
+              "RoleTypeID": "LUI"
+            }
+          }
+        ]
+      },
+      "id": 13674982,
+      "violation_close_timer": 24,
+      "created_at_epoch_millis": 1589417035877,
+      "updated_at_epoch_millis": 1589417035932,
+      "policy_id": 719110,
+      "critical_threshold": {
+        "duration_minutes": 5
+      }
+    },
+    {
+      "type": "infra_host_not_reporting",
+      "name": "PAR-SM-LUI-No-Data-to-Newrelic",
+      "enabled": true,
+      "filter": {
+        "and": [
+          {
+            "is": {
+              "Datacenter": "PAR"
+            }
+          },
+          {
+            "is": {
+              "RoleTypeID": "LUI"
+            }
+          }
+        ]
+      },
+      "id": 13675342,
+      "violation_close_timer": 24,
+      "created_at_epoch_millis": 1589417320951,
+      "updated_at_epoch_millis": 1589417409115,
+      "policy_id": 719110,
+      "critical_threshold": {
+        "duration_minutes": 5
+      }
+    },
+    {
+      "type": "infra_metric",
+      "name": "SEA-SM-LUI-High-CPU-Load",
+      "enabled": true,
+      "filter": {
+        "and": [
+          {
+            "is": {
+              "RoleTypeID": "LUI"
+            }
+          },
+          {
+            "is": {
+              "Datacenter": "SEA"
+            }
+          }
+        ]
+      },
+      "id": 13322694,
+      "violation_close_timer": 24,
+      "created_at_epoch_millis": 1587971816797,
+      "updated_at_epoch_millis": 1589364519030,
+      "policy_id": 719110,
+      "event_type": "SystemSample",
+      "select_value": "loadAverageFiveMinute",
+      "comparison": "above",
+      "critical_threshold": {
+        "value": 4,
+        "duration_minutes": 5,
+        "time_function": "all"
+      },
+      "warning_threshold": {
+        "value": 3,
+        "duration_minutes": 15,
+        "time_function": "all"
+      }
+    },
+    {
+      "type": "infra_metric",
+      "name": "BEI-SM-LUI-High-Disk-Usage",
+      "enabled": true,
+      "filter": {
+        "and": [
+          {
+            "is": {
+              "RoleTypeID": "LUI"
+            }
+          },
+          {
+            "is": {
+              "Datacenter": "BEI"
+            }
+          }
+        ]
+      },
+      "id": 13322950,
+      "violation_close_timer": 24,
+      "created_at_epoch_millis": 1587975288423,
+      "updated_at_epoch_millis": 1589363259153,
+      "policy_id": 719110,
+      "event_type": "SystemSample",
+      "select_value": "diskUsedPercent",
+      "comparison": "above",
+      "critical_threshold": {
+        "value": 99,
+        "duration_minutes": 1,
+        "time_function": "all"
+      },
+      "warning_threshold": {
+        "value": 90,
+        "duration_minutes": 15,
+        "time_function": "all"
+      }
+    },
+    {
+      "type": "infra_host_not_reporting",
+      "name": "BEI-SM-LUI-No-Data-to-Newrelic",
+      "enabled": true,
+      "filter": {
+        "and": [
+          {
+            "is": {
+              "Datacenter": "BEI"
+            }
+          },
+          {
+            "is": {
+              "RoleTypeID": "LUI"
+            }
+          }
+        ]
+      },
+      "id": 13675376,
+      "violation_close_timer": 24,
+      "created_at_epoch_millis": 1589417378285,
+      "updated_at_epoch_millis": 1589417378338,
+      "policy_id": 719110,
+      "critical_threshold": {
+        "duration_minutes": 5
+      }
+    },
+    {
+      "type": "infra_metric",
+      "name": "BEI-SM-LUI-High-CPU-Load ",
+      "enabled": true,
+      "filter": {
+        "and": [
+          {
+            "is": {
+              "RoleTypeID": "LUI"
+            }
+          },
+          {
+            "is": {
+              "Datacenter": "BEI"
+            }
+          }
+        ]
+      },
+      "id": 13322712,
+      "violation_close_timer": 24,
+      "created_at_epoch_millis": 1587972191559,
+      "updated_at_epoch_millis": 1589364575494,
+      "policy_id": 719110,
+      "event_type": "SystemSample",
+      "select_value": "loadAverageFiveMinute",
+      "comparison": "above",
+      "critical_threshold": {
+        "value": 4,
+        "duration_minutes": 5,
+        "time_function": "all"
+      },
+      "warning_threshold": {
+        "value": 3,
+        "duration_minutes": 15,
+        "time_function": "all"
+      }
+    },
+    {
+      "type": "infra_metric",
+      "name": "PAR-SM-LUI-High-Disk-Usage",
+      "enabled": true,
+      "filter": {
+        "and": [
+          {
+            "is": {
+              "RoleTypeID": "LUI"
+            }
+          },
+          {
+            "is": {
+              "Datacenter": "PAR"
+            }
+          }
+        ]
+      },
+      "id": 13322949,
+      "violation_close_timer": 24,
+      "created_at_epoch_millis": 1587975285181,
+      "updated_at_epoch_millis": 1589363265860,
+      "policy_id": 719110,
+      "event_type": "SystemSample",
+      "select_value": "diskUsedPercent",
+      "comparison": "above",
+      "critical_threshold": {
+        "value": 99,
+        "duration_minutes": 1,
+        "time_function": "all"
+      },
+      "warning_threshold": {
+        "value": 90,
+        "duration_minutes": 15,
+        "time_function": "all"
+      }
+    },
+    {
+      "type": "infra_metric",
+      "name": "BEI-SM-LUI-High-Memory-Usage",
+      "enabled": true,
+      "filter": {
+        "and": [
+          {
+            "is": {
+              "RoleTypeID": "LUI"
+            }
+          },
+          {
+            "is": {
+              "Datacenter": "BEI"
+            }
+          }
+        ]
+      },
+      "id": 13322791,
+      "violation_close_timer": 24,
+      "created_at_epoch_millis": 1587972816518,
+      "updated_at_epoch_millis": 1589363846957,
+      "policy_id": 719110,
+      "event_type": "SystemSample",
+      "select_value": "memoryUsedBytes/memoryTotalBytes*100",
+      "comparison": "above",
+      "critical_threshold": {
+        "value": 99,
+        "duration_minutes": 1,
+        "time_function": "all"
+      },
+      "warning_threshold": {
+        "value": 95,
+        "duration_minutes": 5,
+        "time_function": "all"
+      }
+    },
+    {
+      "type": "infra_metric",
+      "name": "PAR-SM-LUI-High-CPU-Load ",
+      "enabled": true,
+      "filter": {
+        "and": [
+          {
+            "is": {
+              "RoleTypeID": "LUI"
+            }
+          },
+          {
+            "is": {
+              "Datacenter": "PAR"
+            }
+          }
+        ]
+      },
+      "id": 13322704,
+      "violation_close_timer": 24,
+      "created_at_epoch_millis": 1587972043241,
+      "updated_at_epoch_millis": 1589364548693,
+      "policy_id": 719110,
+      "event_type": "SystemSample",
+      "select_value": "loadAverageFiveMinute",
+      "comparison": "above",
+      "critical_threshold": {
+        "value": 4,
+        "duration_minutes": 5,
+        "time_function": "all"
+      },
+      "warning_threshold": {
+        "value": 3,
+        "duration_minutes": 15,
+        "time_function": "all"
+      }
+    },
+    {
+      "type": "infra_metric",
+      "name": "SEA-SM-LUI-High-Disk-Usage",
+      "enabled": true,
+      "filter": {
+        "and": [
+          {
+            "is": {
+              "RoleTypeID": "LUI"
+            }
+          },
+          {
+            "is": {
+              "Datacenter": "SEA"
+            }
+          }
+        ]
+      },
+      "id": 13322948,
+      "violation_close_timer": 24,
+      "created_at_epoch_millis": 1587975279057,
+      "updated_at_epoch_millis": 1589363275109,
+      "policy_id": 719110,
+      "event_type": "SystemSample",
+      "select_value": "diskUsedPercent",
+      "comparison": "above",
+      "critical_threshold": {
+        "value": 99,
+        "duration_minutes": 1,
+        "time_function": "all"
+      },
+      "warning_threshold": {
+        "value": 90,
+        "duration_minutes": 15,
+        "time_function": "all"
+      }
+    },
+    {
+      "type": "infra_metric",
+      "name": "PAR-SM-LUI-High-Memory-Usage",
+      "enabled": true,
+      "filter": {
+        "and": [
+          {
+            "is": {
+              "RoleTypeID": "LUI"
+            }
+          },
+          {
+            "is": {
+              "Datacenter": "PAR"
+            }
+          }
+        ]
+      },
+      "id": 13322772,
+      "violation_close_timer": 24,
+      "created_at_epoch_millis": 1587972681835,
+      "updated_at_epoch_millis": 1589363858439,
+      "policy_id": 719110,
+      "event_type": "SystemSample",
+      "select_value": "memoryUsedBytes/memoryTotalBytes*100",
+      "comparison": "above",
+      "critical_threshold": {
+        "value": 99,
+        "duration_minutes": 1,
+        "time_function": "all"
+      },
+      "warning_threshold": {
+        "value": 95,
+        "duration_minutes": 5,
+        "time_function": "all"
+      }
+    },
+    {
+      "type": "infra_metric",
+      "name": "SEA-SM-LUI-High-Memory-Usage",
+      "enabled": true,
+      "filter": {
+        "and": [
+          {
+            "is": {
+              "RoleTypeID": "LUI"
+            }
+          },
+          {
+            "is": {
+              "Datacenter": "SEA"
+            }
+          }
+        ]
+      },
+      "id": 13322767,
+      "violation_close_timer": 24,
+      "created_at_epoch_millis": 1587972665609,
+      "updated_at_epoch_millis": 1589363866091,
+      "policy_id": 719110,
+      "event_type": "SystemSample",
+      "select_value": "memoryUsedBytes/memoryTotalBytes*100",
+      "comparison": "above",
+      "critical_threshold": {
+        "value": 99,
+        "duration_minutes": 1,
+        "time_function": "all"
+      },
+      "warning_threshold": {
+        "value": 95,
+        "duration_minutes": 5,
+        "time_function": "all"
+      }
+    }
+  ],
+  "meta": {
+    "limit": 50,
+    "offset": 0,
+    "total": 12
+  },
+  "links": {}
+}
